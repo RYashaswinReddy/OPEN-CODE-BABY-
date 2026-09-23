@@ -1,14 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650">
   <!-- PLACEHOLDER: Replace with a close-up of fabric / materials used in Drop 1 (heavyweight fleece, 220 GSM combed cotton). -->
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#26262c"/>
-      <stop offset="1" stop-color="#121214"/>
-    </linearGradient>
-  </defs>
-  <rect width="1000" height="650" fill="url(#bg)"/>
-  <g fill="#F6F2EA" font-family="Arial, sans-serif" text-anchor="middle">
-    <text x="500" y="300" font-size="40" font-weight="700" letter-spacing="2">FABRIC &amp; DETAIL</text>
-    <text x="500" y="356" font-size="20" fill="#FFB273">Replace with material close-up</text>
+  <rect width="1000" height="650" fill="#FFFFFF"/>
+  <rect x="16" y="16" width="968" height="618" fill="none" stroke="#141414" stroke-width="2"/>
+  <g fill="#141414" font-family="Arial, sans-serif" text-anchor="middle">
+    <text x="500" y="308" font-size="38" font-weight="700" letter-spacing="6">FABRIC</text>
+    <text x="500" y="360" font-size="19" fill="#D6072D" letter-spacing="2">REPLACE PHOTO</text>
   </g>
 </svg>

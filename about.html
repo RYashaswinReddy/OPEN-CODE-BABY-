@@ -46,6 +46,10 @@
       }
     }
   </style>
+
+  <!-- Scroll-reveal: set .js before reveal.css loads so nothing flashes -->
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="assets/css/reveal.css" />
 </head>
 
 <body class="bg-paper font-body text-ink antialiased">
@@ -73,18 +77,18 @@
     <!-- ===================== INTRO ===================== -->
     <section class="mx-auto max-w-6xl px-4 pt-14 sm:px-6">
       <p class="text-[11px] font-semibold uppercase tracking-[0.3em] text-ink/40">About</p>
-      <h1 class="mt-4 font-display text-5xl uppercase leading-[0.95] tracking-tight sm:text-7xl">
+      <h1 class="mt-4 font-display text-5xl uppercase leading-[0.95] tracking-tight sm:text-7xl" data-reveal>
         The point of HUH
       </h1>
       <!-- Big serif manifesto line -->
-      <p class="mt-10 max-w-3xl font-serif text-3xl italic leading-snug sm:text-5xl">
+      <p class="mt-10 max-w-3xl font-serif text-3xl italic leading-snug sm:text-5xl" data-reveal>
         We design and make our own hoodies and tees in India — real identity, honest price, no imported hype, no fake covers.
       </p>
     </section>
 
     <!-- ===================== WHAT IT IS ===================== -->
     <section aria-labelledby="what-heading" class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-      <div class="mb-8 flex items-baseline justify-between border-b border-ink pb-3">
+      <div class="mb-8 flex items-baseline justify-between border-b border-ink pb-3" data-reveal>
         <h2 id="what-heading" class="text-[11px] font-semibold uppercase tracking-[0.3em]">What it is</h2>
         <p class="text-[11px] uppercase tracking-[0.3em] text-ink/40">01 — Identity</p>
       </div>
@@ -104,13 +108,13 @@
     <!-- ===================== THE PROBLEM ===================== -->
     <section aria-labelledby="problem-heading" class="border-y border-hair">
       <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <div class="mb-8 flex items-baseline justify-between border-b border-ink pb-3">
+        <div class="mb-8 flex items-baseline justify-between border-b border-ink pb-3" data-reveal>
           <h2 id="problem-heading" class="text-[11px] font-semibold uppercase tracking-[0.3em]">The problem</h2>
           <p class="text-[11px] uppercase tracking-[0.3em] text-ink/40">02 — The gap</p>
         </div>
 
         <!-- Numbered hairline rows -->
-        <div class="divide-y divide-hair border-y border-hair">
+        <div class="divide-y divide-hair border-y border-hair" data-reveal>
           <div class="grid gap-2 py-6 sm:grid-cols-[auto_1fr_auto] sm:items-baseline sm:gap-8">
             <p class="text-sm font-bold">01</p>
             <h3 class="text-[11px] font-bold uppercase tracking-[0.2em]">Genuine imports</h3>
@@ -145,13 +149,13 @@
 
     <!-- ===================== WHO IT'S FOR ===================== -->
     <section aria-labelledby="for-heading" class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-      <div class="mb-8 flex items-baseline justify-between border-b border-ink pb-3">
+      <div class="mb-8 flex items-baseline justify-between border-b border-ink pb-3" data-reveal>
         <h2 id="for-heading" class="text-[11px] font-semibold uppercase tracking-[0.3em]">Who it's for</h2>
         <p class="text-[11px] uppercase tracking-[0.3em] text-ink/40">03 — The people</p>
       </div>
 
       <div class="grid gap-10 lg:grid-cols-2">
-        <ul class="divide-y divide-hair border-y border-hair">
+        <ul class="divide-y divide-hair border-y border-hair" data-reveal>
           <li class="py-5">
             <p class="text-[11px] font-bold uppercase tracking-[0.2em]">16–28, all over India</p>
             <p class="mt-1 text-sm text-ink/60">Big cities today, smaller ones increasingly — the culture isn't metro-only anymore.</p>
@@ -167,16 +171,16 @@
         </ul>
 
         <!-- Image grid -->
-        <div class="grid gap-6">
+        <div class="grid gap-6" data-reveal>
           <!-- PLACEHOLDER IMAGE: replace assets/images/about-workshop.svg with a workshop photo -->
-          <figure class="border border-hair">
+          <figure class="border border-hair" data-reveal>
             <img src="assets/images/about-workshop.svg" alt="Inside the HUH atelier where garments are cut and stitched locally" class="h-auto w-full object-cover" width="1000" height="650" />
             <figcaption class="flex items-center justify-between border-t border-hair px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/50">
               <span>Atelier — local make</span><span>A / 02</span>
             </figcaption>
           </figure>
           <!-- PLACEHOLDER IMAGE: replace assets/images/about-materials.svg with a fabric close-up -->
-          <figure class="border border-hair">
+          <figure class="border border-hair" data-reveal>
             <img src="assets/images/about-materials.svg" alt="Close-up of Drop 1 fabrics — heavyweight fleece and combed cotton" class="h-auto w-full object-cover" width="1000" height="650" />
             <figcaption class="flex items-center justify-between border-t border-hair px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/50">
               <span>Fabric &amp; detail</span><span>B / 02</span>
@@ -189,12 +193,12 @@
     <!-- ===================== DROP 1 RECAP ===================== -->
     <section aria-labelledby="drop-heading" class="border-y border-hair">
       <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <div class="mb-8 flex items-baseline justify-between border-b border-ink pb-3">
+        <div class="mb-8 flex items-baseline justify-between border-b border-ink pb-3" data-reveal>
           <h2 id="drop-heading" class="text-[11px] font-semibold uppercase tracking-[0.3em]">Drop 1</h2>
           <p class="text-[11px] uppercase tracking-[0.3em] text-ink/40">04 — The capsule</p>
         </div>
 
-        <div class="divide-y divide-hair border-y border-hair">
+        <div class="divide-y divide-hair border-y border-hair" data-reveal>
           <div class="grid gap-2 py-6 sm:grid-cols-[auto_1fr_auto] sm:items-baseline sm:gap-8">
             <p class="text-sm font-bold">01</p>
             <div>
@@ -213,7 +217,7 @@
           </div>
         </div>
 
-        <a href="app.html" class="mt-10 inline-block bg-ink px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-paper transition hover:bg-paper hover:text-ink hover:outline hover:outline-2 hover:outline-ink">
+        <a href="app.html" class="mt-10 inline-block bg-ink px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-paper transition hover:bg-paper hover:text-ink hover:outline hover:outline-2 hover:outline-ink" data-reveal>
           Try the Fit Finder →
         </a>
       </div>
@@ -225,7 +229,7 @@
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <p class="select-none pt-10 font-display text-[24vw] uppercase leading-[0.85] tracking-tight sm:text-[13rem]">HUH<span class="text-ink/20">.</span></p>
 
-      <div class="grid gap-10 border-t border-hair py-12 sm:grid-cols-3">
+      <div class="grid gap-10 border-t border-hair py-12 sm:grid-cols-3" data-reveal>
         <nav aria-label="Drop 1">
           <h3 class="mb-4 text-[11px] font-semibold uppercase tracking-[0.3em] text-ink/40">Drop 1</h3>
           <ul class="space-y-2">
@@ -263,5 +267,8 @@
       </div>
     </div>
   </footer>
+
+  <!-- Scroll-reveal -->
+  <script src="assets/js/reveal.js"></script>
 </body>
 </html>

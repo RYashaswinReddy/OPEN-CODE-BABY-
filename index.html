@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HUH — Indian Streetwear · Drop 1</title>
+  <meta name="description" content="HUH is a homegrown Indian streetwear label making hoodies and tees locally — priced between duty-inflated imports and cheap first copies." />
+
+  <!-- Google Fonts: Space Grotesk (headings, streetwear feel) + Inter (body, readable) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS via CDN — no build step needed -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Brand design tokens: colors + fonts used across every page -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#141414',        // page background (near-black)
+            panel: '#1E1E21',      // card background (slightly lighter)
+            paper: '#F6F2EA',      // off-white text/light sections
+            muted: '#C9C5BC',      // secondary text — check contrast (passes AA)
+            accent: '#FF6B1A',     // primary orange
+            accentBright: '#FF7A2A',
+            accentSoft: '#FFB273', // orange for links on dark bg (AA-safe)
+            accentDeep: '#C2410C', // orange for links on light bg (AA-safe)
+          },
+          fontFamily: {
+            display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* Accessible focus ring on EVERY focusable element (keyboard + screen readers) */
+    :focus-visible {
+      outline: 3px solid #FFB273;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    /* Respect users who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-ink font-body text-paper antialiased">
+
+  <!-- Skip link: lets keyboard users jump straight to content, skipping the nav -->
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-accent focus:text-ink focus:px-4 focus:py-2 focus:rounded-full focus:font-semibold">
+    Skip to main content
+  </a>
+
+  <!-- ===================== SHARED HEADER / NAV ===================== -->
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-ink/95 backdrop-blur">
+    <nav aria-label="Main" class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-4 sm:px-6">
+      <!-- Logo. "TM" marks HUH as a working name — trademark not yet confirmed. -->
+      <a href="index.html" class="font-display text-2xl font-bold tracking-tight text-white">
+        HUH<span class="text-accent">.</span><span class="align-super text-xs font-semibold text-muted">™</span>
+      </a>
+
+      <ul class="flex items-center gap-1 sm:gap-2">
+        <li><a href="index.html" aria-current="page" class="rounded-md px-3 py-2 text-sm font-semibold text-white bg-white/10">Home</a></li>
+        <li><a href="about.html" class="rounded-md px-3 py-2 text-sm font-semibold text-muted transition hover:bg-white/10 hover:text-white">About</a></li>
+        <li><a href="app.html" class="rounded-md px-3 py-2 text-sm font-semibold text-muted transition hover:bg-white/10 hover:text-white">App</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ===================== HERO ===================== -->
+    <section class="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24">
+      <div>
+        <p class="mb-4 inline-block rounded-full border border-accent/50 bg-accent/10 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-accentSoft">
+          Made in India · Drop 1
+        </p>
+        <h1 class="font-display text-6xl font-bold tracking-tight sm:text-7xl">
+          HUH<span class="text-accent">.</span>
+        </h1>
+        <!-- The required one-line description -->
+        <p class="mt-5 max-w-xl text-xl leading-relaxed text-paper">
+          HUH is a homegrown Indian streetwear label designing and making its own hoodies and tees —
+          priced for a normal budget, between duty-inflated imports and cheap first copies.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="app.html" class="rounded-full bg-accent px-6 py-3 font-semibold text-ink transition hover:bg-accentBright">
+            Find your fit
+          </a>
+          <a href="about.html" class="rounded-full border border-white/25 px-6 py-3 font-semibold text-white transition hover:bg-white/10">
+            Why HUH?
+          </a>
+        </div>
+      </div>
+
+      <!-- PLACEHOLDER IMAGE: replace assets/images/hero-drop1.svg with your Drop 1 hero photo -->
+      <figure class="overflow-hidden rounded-3xl border border-white/10">
+        <img src="assets/images/hero-drop1.svg" alt="Model wearing the HUH Drop 1 hero hoodie in a Mumbai street setting" class="h-auto w-full object-cover" width="1200" height="675" />
+        <figcaption class="bg-panel px-5 py-3 text-sm text-muted">Drop 1 — hero look. Local design, local make.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ===================== DROP 1 PRODUCTS ===================== -->
+    <section aria-labelledby="drop1-heading" class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <div class="mb-10 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <h2 id="drop1-heading" class="font-display text-3xl font-bold sm:text-4xl">Drop 1 — the capsule</h2>
+          <p class="mt-2 max-w-xl text-muted">Two pieces, intentionally small. Designed to prove that real design identity and a normal budget can live in the same garment.</p>
+        </div>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <!-- Hoodie card -->
+        <article class="overflow-hidden rounded-3xl border border-white/10 bg-panel">
+          <!-- PLACEHOLDER IMAGE: replace assets/images/product-hoodie.svg with studio photography -->
+          <img src="assets/images/product-hoodie.svg" alt="Studio shot of the HUH hero hoodie — heavyweight fleece in a neutral colourway" class="h-auto w-full object-cover" width="800" height="800" />
+          <div class="p-6">
+            <p class="text-xs font-semibold uppercase tracking-widest text-accentSoft">Hero piece</p>
+            <h3 class="mt-1 font-display text-2xl font-bold">The Hero Hoodie</h3>
+            <p class="mt-3 text-muted">High-weight fleece, boxy drop shoulders, embroidered script logo. The one that says it.</p>
+            <p class="mt-4 text-lg font-bold text-accentSoft">₹4,999</p>
+          </div>
+        </article>
+
+        <!-- Tee card -->
+        <article class="overflow-hidden rounded-3xl border border-white/10 bg-panel">
+          <!-- PLACEHOLDER IMAGE: replace assets/images/product-tee.svg with studio photography -->
+          <img src="assets/images/product-tee.svg" alt="Studio shot of the HUH core tee — combed cotton with a structured collar" class="h-auto w-full object-cover" width="800" height="800" />
+          <div class="p-6">
+            <p class="text-xs font-semibold uppercase tracking-widest text-accentSoft">Core piece</p>
+            <h3 class="mt-1 font-display text-2xl font-bold">The Core Tee</h3>
+            <p class="mt-3 text-muted">Combed, garment-dyed cotton with a structured collar that keeps its shape wash after wash.</p>
+            <p class="mt-4 text-lg font-bold text-accentSoft">₹1,499</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== THE GAP (3 quick pillars) ===================== -->
+    <section aria-labelledby="gap-heading" class="border-y border-white/10 bg-panel/60">
+      <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <h2 id="gap-heading" class="font-display text-3xl font-bold sm:text-4xl">The space HUH lives in</h2>
+        <dl class="mt-8 grid gap-6 md:grid-cols-3">
+          <div class="rounded-2xl border border-white/10 bg-ink p-6">
+            <dt class="font-display text-3xl font-bold text-accentBright">0×</dt>
+            <dd class="mt-2 text-muted">markup from import duty. Genuine international hype brands can sell at 2–3× their global price once duty and logistics land in India.</dd>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-ink p-6">
+            <dt class="font-display text-3xl font-bold text-accentBright">100%</dt>
+            <dd class="mt-2 text-muted">designed and manufactured locally — real brand DNA, real quality control, no middlemen holding identity hostage.</dd>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-ink p-6">
+            <dt class="font-display text-3xl font-bold text-accentBright">₹4,999</dt>
+            <dd class="mt-2 text-muted">top of the first capsule. Entry under the problem hoodie, without the first-copy compromise.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ===================== CTA BAND -> APP ===================== -->
+    <section aria-labelledby="cta-heading" class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <div class="rounded-3xl border border-accent/40 bg-gradient-to-br from-accent/15 to-transparent p-8 sm:p-12">
+        <h2 id="cta-heading" class="font-display text-3xl font-bold sm:text-4xl">Not sure your size?</h2>
+        <p class="mt-3 max-w-2xl text-lg text-muted">
+          The Fit Finder builds your Drop 1 size from your height, weight and how you actually like to wear your clothes.
+        </p>
+        <a href="app.html" class="mt-6 inline-block rounded-full bg-accent px-6 py-3 font-semibold text-ink transition hover:bg-accentBright">
+          Open the Fit Finder →
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== SHARED FOOTER ===================== -->
+  <footer class="border-t border-white/10 bg-panel/60">
+    <div class="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 sm:px-6 md:flex-row md:items-center md:justify-between">
+      <p class="font-display text-xl font-bold text-white">HUH<span class="text-accent">.</span></p>
+      <nav aria-label="Footer" class="flex gap-6 text-sm text-muted">
+        <a href="index.html" class="transition hover:text-white">Home</a>
+        <a href="about.html" class="transition hover:text-white">About</a>
+        <a href="app.html" class="transition hover:text-white">App</a>
+      </nav>
+      <p class="text-xs text-muted">
+        "HUH" is a working name — trademark not yet confirmed. Prices in INR, indicative for Drop 1. © 2026 HUH.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

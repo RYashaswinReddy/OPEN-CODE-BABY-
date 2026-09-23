@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fit Finder — HUH</title>
+  <meta name="description" content="Find your Drop 1 size — an interactive size tool based on height, weight and your preferred fit." />
+
+  <!-- Google Fonts — same pairing as the rest of the site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Brand design tokens — must match index.html and about.html -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#141414',
+            panel: '#1E1E21',
+            paper: '#F6F2EA',
+            muted: '#C9C5BC',
+            accent: '#FF6B1A',
+            accentBright: '#FF7A2A',
+            accentSoft: '#FFB273',
+            accentDeep: '#C2410C',
+          },
+          fontFamily: {
+            display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :focus-visible {
+      outline: 3px solid #FFB273;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-ink font-body text-paper antialiased">
+
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-accent focus:text-ink focus:px-4 focus:py-2 focus:rounded-full focus:font-semibold">
+    Skip to main content
+  </a>
+
+  <!-- ===================== SHARED HEADER ===================== -->
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-ink/95 backdrop-blur">
+    <nav aria-label="Main" class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-4 sm:px-6">
+      <a href="index.html" class="font-display text-2xl font-bold tracking-tight text-white">
+        HUH<span class="text-accent">.</span><span class="align-super text-xs font-semibold text-muted">™</span>
+      </a>
+      <ul class="flex items-center gap-1 sm:gap-2">
+        <li><a href="index.html" class="rounded-md px-3 py-2 text-sm font-semibold text-muted transition hover:bg-white/10 hover:text-white">Home</a></li>
+        <li><a href="about.html" class="rounded-md px-3 py-2 text-sm font-semibold text-muted transition hover:bg-white/10 hover:text-white">About</a></li>
+        <li><a href="app.html" aria-current="page" class="rounded-md px-3 py-2 text-sm font-semibold text-white bg-white/10">App</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ===================== PAGE INTRO ===================== -->
+    <section class="mx-auto max-w-6xl px-4 pt-14 sm:px-6">
+      <p class="mb-4 inline-block rounded-full border border-accent/50 bg-accent/10 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-accentSoft">App · Drop 1</p>
+      <h1 class="font-display text-5xl font-bold tracking-tight sm:text-6xl">The Fit Finder</h1>
+      <p class="mt-4 max-w-2xl text-lg text-muted">
+        Tell us your height, weight and how you like to wear your clothes. We'll recommend a size for the hoodie and the tee from Drop 1.
+      </p>
+    </section>
+
+    <!-- ===================== THE TOOL ===================== -->
+    <section aria-labelledby="tool-heading" class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <h2 id="tool-heading" class="sr-only">Fit finder form</h2>
+
+      <div class="grid gap-6 lg:grid-cols-5">
+
+        <!-- ---------- LEFT: FORM ---------- -->
+        <form class="lg:col-span-2 space-y-8 rounded-3xl border border-white/10 bg-panel p-6 sm:p-8" id="fit-form">
+
+          <!-- Height slider -->
+          <div>
+            <div class="mb-2 flex items-baseline justify-between">
+              <label for="height" class="font-semibold text-paper">Height</label>
+              <!-- <output> announces the live value to assistive tech -->
+              <output for="height" id="height-out" class="font-display text-lg font-bold text-accentSoft">172 cm</output>
+            </div>
+            <input type="range" id="height" min="140" max="205" step="1" value="172"
+                   class="h-2 w-full cursor-pointer accent-accent"
+                   aria-describedby="height-hint" />
+            <p id="height-hint" class="mt-1 text-xs text-muted">140 – 205 cm</p>
+          </div>
+
+          <!-- Weight slider -->
+          <div>
+            <div class="mb-2 flex items-baseline justify-between">
+              <label for="weight" class="font-semibold text-paper">Weight</label>
+              <output for="weight" id="weight-out" class="font-display text-lg font-bold text-accentSoft">68 kg</output>
+            </div>
+            <input type="range" id="weight" min="40" max="140" step="1" value="68"
+                   class="h-2 w-full cursor-pointer accent-accent"
+                   aria-describedby="weight-hint" />
+            <p id="weight-hint" class="mt-1 text-xs text-muted">40 – 140 kg</p>
+          </div>
+
+          <!-- Fit preference (radio group) -->
+          <fieldset>
+            <legend class="mb-3 font-semibold text-paper">How do you like to wear it?</legend>
+            <div class="grid gap-3 sm:grid-cols-3">
+              <label class="cursor-pointer rounded-xl border border-white/15 bg-ink p-4 transition has-[:checked]:border-accent has-[:checked]:bg-accent/10">
+                <input type="radio" name="fit" value="regular" checked class="mr-2 accent-accent" />
+                <span class="font-semibold text-white">Regular</span>
+                <span class="mt-1 block text-xs text-muted">True to size</span>
+              </label>
+              <label class="cursor-pointer rounded-xl border border-white/15 bg-ink p-4 transition has-[:checked]:border-accent has-[:checked]:bg-accent/10">
+                <input type="radio" name="fit" value="relaxed" class="mr-2 accent-accent" />
+                <span class="font-semibold text-white">Relaxed</span>
+                <span class="mt-1 block text-xs text-muted">One size up</span>
+              </label>
+              <label class="cursor-pointer rounded-xl border border-white/15 bg-ink p-4 transition has-[:checked]:border-accent has-[:checked]:bg-accent/10">
+                <input type="radio" name="fit" value="oversized" class="mr-2 accent-accent" />
+                <span class="font-semibold text-white">Oversized</span>
+                <span class="mt-1 block text-xs text-muted">Tee +2, hoodie +1</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="flex items-center justify-between gap-4">
+            <p class="text-xs text-muted">Updates live as you adjust.</p>
+            <button type="button" id="reset-btn"
+                    class="rounded-full border border-white/25 px-5 py-2 text-sm font-semibold text-white transition hover:bg-white/10">
+              Reset
+            </button>
+          </div>
+        </form>
+
+        <!-- ---------- RIGHT: RESULTS + CHART ---------- -->
+        <div class="lg:col-span-3 space-y-6">
+
+          <!-- Result panel: role="status" announces recommendations to screen readers -->
+          <div id="result" role="status" aria-live="polite" tabindex="-1"
+               class="rounded-3xl border border-accent/50 bg-gradient-to-br from-accent/15 to-transparent p-6 sm:p-8">
+
+            <h3 class="font-display text-xl font-bold text-white">Your Drop 1 size</h3>
+
+            <div class="mt-4 grid gap-4 sm:grid-cols-2">
+              <!-- Hoodie recommendation -->
+              <div class="rounded-2xl border border-white/10 bg-ink p-5">
+                <p class="text-xs font-semibold uppercase tracking-widest text-accentSoft">Hero Hoodie</p>
+                <p id="hoodie-result" class="mt-2 font-display text-5xl font-bold text-white">–</p>
+                <p id="hoodie-note" class="mt-2 text-sm text-muted"></p>
+              </div>
+              <!-- Tee recommendation -->
+              <div class="rounded-2xl border border-white/10 bg-ink p-5">
+                <p class="text-xs font-semibold uppercase tracking-widest text-accentSoft">Core Tee</p>
+                <p id="tee-result" class="mt-2 font-display text-5xl font-bold text-white">–</p>
+                <p id="tee-note" class="mt-2 text-sm text-muted"></p>
+              </div>
+            </div>
+
+            <!-- Reason text: explains how the number was reached -->
+            <p id="reason" class="mt-5 text-sm text-paper"></p>
+            <p class="mt-3 text-xs text-muted">
+              Sizing guide, not a guarantee — measurements are flat garment specs. If you're between sizes, size up for layering.
+            </p>
+          </div>
+
+          <!-- Size chart with the recommended rows highlighted -->
+          <div class="overflow-hidden rounded-3xl border border-white/10 bg-panel">
+            <div class="border-b border-white/10 px-6 py-4">
+              <h3 class="font-display text-xl font-bold text-white">Drop 1 size chart</h3>
+              <p class="mt-1 text-xs text-muted">Flat measurements in cm · unisex. Recommended row is highlighted.</p>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full min-w-[560px] text-left text-sm">
+                <caption class="sr-only">Drop 1 size chart with chest, length and sleeve measurements per size.</caption>
+                <thead class="bg-ink/80 text-xs uppercase tracking-wider text-muted">
+                  <tr>
+                    <th scope="col" class="px-6 py-3">Size</th>
+                    <th scope="col" class="px-6 py-3">Chest</th>
+                    <th scope="col" class="px-6 py-3">Body length</th>
+                    <th scope="col" class="px-6 py-3">Hoodie sleeve</th>
+                  </tr>
+                </thead>
+                <tbody id="chart-body" class="divide-y divide-white/5">
+                  <!-- Rows are rendered here by app.js (chart.js object below) -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== HOW IT WORKS ===================== -->
+    <section aria-labelledby="how-heading" class="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
+      <div class="rounded-3xl border border-white/10 bg-panel/60 p-6 sm:p-8">
+        <h2 id="how-heading" class="font-display text-xl font-bold text-white">How it works</h2>
+        <p class="mt-2 max-w-3xl text-sm leading-relaxed text-muted">
+          HUH pieces are unisex and cut generously. The tool turns your height and weight into a body-frame baseline, adjusts for very short or very tall frames, then applies how you like to wear it — the hoodie runs closer to your true fit, while the tee can be sized up further for that exaggerated streetwear silhouette. When you're between sizes, go up.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== SHARED FOOTER ===================== -->
+  <footer class="border-t border-white/10 bg-panel/60">
+    <div class="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 sm:px-6 md:flex-row md:items-center md:justify-between">
+      <p class="font-display text-xl font-bold text-white">HUH<span class="text-accent">.</span></p>
+      <nav aria-label="Footer" class="flex gap-6 text-sm text-muted">
+        <a href="index.html" class="transition hover:text-white">Home</a>
+        <a href="about.html" class="transition hover:text-white">About</a>
+        <a href="app.html" class="transition hover:text-white">App</a>
+      </nav>
+      <p class="text-xs text-muted">
+        "HUH" is a working name — trademark not yet confirmed. Prices in INR, indicative for Drop 1. © 2026 HUH.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    /* ============================================================
+       HUH FIT FINDER — how the sizing logic works
+       ------------------------------------------------------------
+       1. Height + weight → a "build index" (kg per cm of height).
+       2. Build index → body-frame baseline size (XS–XXL).
+       3. Very short or very tall frames shift the baseline by one.
+       4. Fit preference shifts the final size:
+            - Hoodie: relaxed +1, oversized +1
+            - Tee:    relaxed +1, oversized +2 (for the exaggerated
+                      streetwear tee silhouette)
+       ============================================================ */
+
+    // Flat garment measurements (cm) for the size chart.
+    const CHART = [
+      { size: 'XS', chest: 96,  length: 66, sleeve: 60 },
+      { size: 'S',  chest: 102, length: 68, sleeve: 62 },
+      { size: 'M',  chest: 108, length: 70, sleeve: 64 },
+      { size: 'L',  chest: 114, length: 72, sleeve: 66 },
+      { size: 'XL', chest: 120, length: 74, sleeve: 68 },
+      { size: 'XXL', chest: 126, length: 76, sleeve: 70 },
+    ];
+    const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+
+    // DOM references
+    const heightInput = document.getElementById('height');
+    const weightInput = document.getElementById('weight');
+    const heightOut   = document.getElementById('height-out');
+    const weightOut   = document.getElementById('weight-out');
+    const hoodieOut   = document.getElementById('hoodie-result');
+    const teeOut      = document.getElementById('tee-result');
+    const hoodieNote  = document.getElementById('hoodie-note');
+    const teeNote     = document.getElementById('tee-note');
+    const reasonOut   = document.getElementById('reason');
+    const chartBody   = document.getElementById('chart-body');
+    const resultBox   = document.getElementById('result');
+    const resetBtn    = document.getElementById('reset-btn');
+    const fitRadios   = document.querySelectorAll('input[name="fit"]');
+
+    // Walk one step up (+) or down (-) the size list, clamped to XS..XXL.
+    function shiftSize(size, amount) {
+      const i = Math.min(SIZES.length - 1, Math.max(0, SIZES.indexOf(size) + amount));
+      return SIZES[i];
+    }
+
+    // Body-frame baseline from the build index (weight KG per CM of height).
+    function baselineSize(weightKg, heightCm) {
+      const index = weightKg / heightCm;          // e.g. 68/172 ≈ 0.395
+      if (index < 0.28) return 'XS';
+      if (index < 0.33) return 'S';
+      if (index < 0.40) return 'M';
+      if (index < 0.45) return 'L';
+      if (index < 0.50) return 'XL';
+      return 'XXL';
+    }
+
+    // Fit preference → how many sizes to add for each garment.
+    const FIT_SHIFT = {
+      regular:   { hoodie: 0, tee: 0 },
+      relaxed:   { hoodie: 1, tee: 1 },
+      oversized: { hoodie: 1, tee: 2 },
+    };
+
+    // Render the size chart table once.
+    function renderChart() {
+      chartBody.innerHTML = CHART.map(row => `
+        <tr data-size="${row.size}">
+          <th scope="row" class="px-6 py-3 font-display font-bold text-white">${row.size}</th>
+          <td class="px-6 py-3 text-muted">${row.chest}</td>
+          <td class="px-6 py-3 text-muted">${row.length}</td>
+          <td class="px-6 py-3 text-muted">${row.sleeve}</td>
+        </tr>`).join('');
+    }
+
+    // Highlight the rows matching the recommended sizes.
+    function highlightRows(sizes) {
+      document.querySelectorAll('#chart-body tr').forEach(tr => {
+        const active = sizes.includes(tr.dataset.size);
+        tr.classList.toggle('bg-accent/15', active);
+        if (active) {
+          tr.setAttribute('aria-current', 'true');
+          tr.querySelectorAll('td').forEach(td => td.classList.add('text-white', 'font-semibold'));
+        } else {
+          tr.removeAttribute('aria-current');
+          tr.querySelectorAll('td').forEach(td => td.classList.remove('text-white', 'font-semibold'));
+        }
+      });
+    }
+
+    // Main calculation: read inputs, compute sizes, update the UI.
+    function recommend() {
+      const heightCm = Number(heightInput.value);
+      const weightKg = Number(weightInput.value);
+      const fit = document.querySelector('input[name="fit"]:checked').value;
+      const shift = FIT_SHIFT[fit];
+
+      // Step 1+2: frame baseline
+      let base = baselineSize(weightKg, heightCm);
+
+      // Step 3: frame-length adjustment
+      if (heightCm < 155) base = shiftSize(base, -1);
+      if (heightCm > 190) base = shiftSize(base, +1);
+
+      // Step 4: fit preference
+      const hoodie = shiftSize(base, shift.hoodie);
+      const tee    = shiftSize(base, shift.tee);
+
+      // Notes per garment + fit (written out so screen readers announce them).
+      const HOODIE_NOTES = {
+        regular:   'True to size — structured, boxy fit.',
+        relaxed:   'One size up — relaxes the shoulder line.',
+        oversized: 'One size up — the boxy streetwear silhouette.',
+      };
+      const TEE_NOTES = {
+        regular:   'True to size — clean, sharp line.',
+        relaxed:   'One size up — hangs loosely.',
+        oversized: 'Two sizes up — the exaggerated streetwear shape.',
+      };
+      const fitLabel = { regular: 'regular', relaxed: 'relaxed', oversized: 'oversized' }[fit];
+
+      // Update the DOM
+      heightOut.textContent   = `${heightCm} cm`;
+      weightOut.textContent   = `${weightKg} kg`;
+      hoodieOut.textContent   = hoodie;
+      teeOut.textContent      = tee;
+      hoodieNote.textContent  = HOODIE_NOTES[fit];
+      teeNote.textContent     = TEE_NOTES[fit];
+      reasonOut.textContent   = `Based on ${heightCm} cm and ${weightKg} kg your frame reads ${base}${heightCm < 155 || heightCm > 190 ? ' (adjusted for height)' : ''}. With a ${fitLabel} fit, we recommend ${hoodie} in the hoodie and ${tee} in the tee.`;
+
+      highlightRows([hoodie, tee]);
+    }
+
+    // Recompute on every input change (live updates).
+    heightInput.addEventListener('input', recommend);
+    weightInput.addEventListener('input', recommend);
+    fitRadios.forEach(r => r.addEventListener('change', recommend));
+
+    // Reset to defaults, then recompute.
+    resetBtn.addEventListener('click', () => {
+      heightInput.value = 172;
+      weightInput.value = 68;
+      document.querySelector('input[name="fit"][value="regular"]').checked = true;
+      recommend();
+      heightInput.focus(); // return keyboard focus to the first control
+    });
+
+    // Render chart + run once on load so the page is never empty.
+    renderChart();
+    recommend();
+  </script>
+</body>
+</html>

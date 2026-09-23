@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650">
+  <!-- PLACEHOLDER: Replace with a close-up of fabric / materials used in Drop 1 (heavyweight fleece, 220 GSM combed cotton). -->
+  <rect width="1000" height="650" fill="#FFFFFF"/>
+  <rect x="16" y="16" width="968" height="618" fill="none" stroke="#141414" stroke-width="2"/>
+  <g fill="#141414" font-family="Arial, sans-serif" text-anchor="middle">
+    <text x="500" y="308" font-size="38" font-weight="700" letter-spacing="6">FABRIC</text>
+    <text x="500" y="360" font-size="19" fill="#D6072D" letter-spacing="2">REPLACE PHOTO</text>
+  </g>
+</svg>

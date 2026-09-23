@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
-  <!-- PLACEHOLDER: Replace this file with your real Drop 1 hero photo (model wearing the hoodie in a street setting). Keep the same filename, or update the <img src> in index.html. -->
-  <rect width="1200" height="675" fill="#F4F1EA"/>
-  <rect x="20" y="20" width="1160" height="635" fill="none" stroke="#141414" stroke-width="2"/>
+  <!-- PLACEHOLDER: Replace with your Drop 1 kampaign hero photo (model wearing the hoodie in a street setting). -->
+  <rect width="1200" height="675" fill="#FFFFFF"/>
+  <rect x="20" y="20" width="1160" height="635" fill="none" stroke="#CDCDCD" stroke-width="2"/>
   <g fill="#141414" font-family="Arial, sans-serif" text-anchor="middle">
-    <text x="600" y="318" font-size="46" font-weight="700" letter-spacing="6">DROP 1 — HERO</text>
-    <text x="600" y="380" font-size="20" fill="#D6072D" letter-spacing="2">REPLACE WITH REAL PHOTO</text>
+    <text x="600" y="318" font-size="46" font-weight="700" letter-spacing="6">KAMPAIGN — DROP 1</text>
+    <text x="600" y="380" font-size="20" fill="#9A9A9A" letter-spacing="2">REPLACE WITH REAL PHOTO</text>
   </g>
 </svg>

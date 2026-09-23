@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
   <!-- PLACEHOLDER: Replace with a studio shot of the HUH hero hoodie (Drop 1). -->
   <rect width="800" height="800" fill="#FFFFFF"/>
-  <rect x="16" y="16" width="768" height="768" fill="none" stroke="#E2E2E2" stroke-width="2"/>
+  <rect x="16" y="16" width="768" height="768" fill="none" stroke="#141414" stroke-width="2"/>
   <g fill="#141414" font-family="Arial, sans-serif" text-anchor="middle">
     <text x="400" y="386" font-size="38" font-weight="700" letter-spacing="6">HOODIE</text>
-    <text x="400" y="438" font-size="19" fill="#9A9A9A" letter-spacing="2">REPLACE PHOTO</text>
+    <text x="400" y="438" font-size="19" fill="#D6072D" letter-spacing="2">REPLACE PHOTO</text>
   </g>
 </svg>
